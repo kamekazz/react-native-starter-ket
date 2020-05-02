@@ -6,6 +6,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
+import { Provider } from "react-redux";
+import { store } from "./store";
+
 // import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import HomeScreen from "./components/screens/HomeScreen/HomeScreen";
 
@@ -42,12 +45,14 @@ export default function App(props) {
   } else {
     return (
       <View style={styles.container}>
-        {Platform.OS === "ios" && <StatusBar barStyle="default" />}
-        <NavigationContainer>
-          <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="Root" component={HomeScreen} />
-          </Stack.Navigator>
-        </NavigationContainer>
+        <Provider store={store}>
+          {Platform.OS === "ios" && <StatusBar barStyle="default" />}
+          <NavigationContainer>
+            <Stack.Navigator screenOptions={{ headerShown: false }}>
+              <Stack.Screen name="Root" component={HomeScreen} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </Provider>
       </View>
     );
   }

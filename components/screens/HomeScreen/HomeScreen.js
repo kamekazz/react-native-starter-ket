@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { View, Animated, TouchableOpacity, Text } from "react-native";
+import { AppInfo } from "../../../constants/AppInfo";
+import { TextEl } from "../../../style/element";
 
 const HomeScreen = () => {
   const leftValue = useState(new Animated.Value(5))[0];
@@ -23,7 +25,7 @@ const HomeScreen = () => {
           }}
         />
         <TouchableOpacity onPress={moveBall}>
-          <Text>Move ME</Text>
+          <TextEl>{AppInfo.title}</TextEl>
         </TouchableOpacity>
       </View>
     </View>
