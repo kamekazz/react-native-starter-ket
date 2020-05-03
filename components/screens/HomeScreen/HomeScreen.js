@@ -1,33 +1,18 @@
 import React, { useState } from "react";
-import { View, Animated, TouchableOpacity, Text } from "react-native";
+import { View, Animated, TouchableOpacity, Text, Image } from "react-native";
 import { AppInfo } from "../../../constants/AppInfo";
 import { TextEl } from "../../../style/element";
+import { gbStyle } from "../../../style/globalStyle";
+import { StyleSheet } from "react-native";
 
 const HomeScreen = () => {
-  const leftValue = useState(new Animated.Value(5))[0];
-  function moveBall() {
-    Animated.spring(leftValue, {
-      toValue: 0,
-      duration: 1000,
-      useNativeDriver: false,
-    }).start();
-  }
   return (
-    <View style={{ flex: 1 }}>
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Animated.View
-          style={{
-            width: 100,
-            height: 100,
-            borderRadius: 100 / 2,
-            backgroundColor: "red",
-            marginLeft: leftValue,
-          }}
-        />
-        <TouchableOpacity onPress={moveBall}>
-          <TextEl>{AppInfo.title}</TextEl>
-        </TouchableOpacity>
-      </View>
+    <View style={style.container}>
+      <Image
+        source={require("../../../assets/images/map.jpg")}
+        style={{ width: 500, height: 900, opacity: 0.5 }}
+        resizeMode="cover"
+      />
     </View>
   );
 };
@@ -37,3 +22,9 @@ HomeScreen.navigationOptions = {
 };
 
 export default HomeScreen;
+const style = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+  },
+});
